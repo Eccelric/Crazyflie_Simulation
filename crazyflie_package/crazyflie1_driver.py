@@ -72,7 +72,7 @@ class CrazyflieDriver:
 
         rclpy.init(args=None)
         self.node = rclpy.create_node('crazyflie_webots_driver')
-        self.node.create_subscription(Twist, 'cmd_vel', self.cmd_vel_callback, 1)
+        self.node.create_subscription(Twist, 'Crazyflie1/cmd_vel', self.cmd_vel_callback, 1)
         #self.laser_publisher = self.node.create_publisher(LaserScan, 'scan', 10)
         self.odom_publisher = self.node.create_publisher(Odometry, 'odom', 10)
 
@@ -168,7 +168,7 @@ class CrazyflieDriver:
         ## Fill in Setpoints
         setpoint = cffirmware.setpoint_t()
         setpoint.mode.z = cffirmware.modeAbs
-        setpoint.position.z = 1.0
+        setpoint.position.z = self.target_twist.linear.z
         setpoint.mode.yaw = cffirmware.modeVelocity
         # TODO: find out why this multipication is necessary...
         setpoint.attitudeRate.yaw = degrees(self.target_twist.angular.z)*5

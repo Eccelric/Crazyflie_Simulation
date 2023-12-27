@@ -4,7 +4,7 @@ package_name = 'crazyflie_package'
 data_files = []
 data_files.append(('share/ament_index/resource_index/packages', ['resource/' + package_name]))
 data_files.append(('share/' + package_name + '/launch', ['launch/crazyflie_launch.py']))
-data_files.append(('share/' + package_name + '/worlds', ['worlds/crazyflie_world.wbt']))
+data_files.append(('share/' + package_name + '/worlds', ['worlds/crazy_world.wbt']))
 data_files.append(('share/' + package_name + '/worlds', ['worlds/meshes/battery.stl']))
 data_files.append(('share/' + package_name + '/resource', ['resource/crazyflie.urdf']))
 data_files.append(('share/' + package_name, ['package.xml']))
@@ -23,7 +23,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'crazyflie_driver = crazyflie_package.crazyflie_driver:main',
+            'crazyflie_driver1 = crazyflie_package.crazyflie_driver1:main',
+            'crazyflie_driver2 = crazyflie_package.crazyflie_driver2:main',
         ],
     },
 )

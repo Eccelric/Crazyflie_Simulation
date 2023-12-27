@@ -10,19 +10,27 @@ def generate_launch_description():
     robot_description_path = os.path.join(package_dir, 'resource', 'crazyflie.urdf')
 
     webots = WebotsLauncher(
-        world=os.path.join(package_dir, 'worlds', 'crazyflie_world.wbt')
+        world=os.path.join(package_dir, 'worlds', 'crazy_world.wbt')
     )
 
-    crazyflie_driver = WebotsController(
-        robot_name='Crazyflie',
+    crazyflie_driver1 = WebotsController(
+        robot_name='Crazyflie1',
         parameters=[
             {'robot_description': robot_description_path},
         ]
     )
+    crazyflie_driver2 = WebotsController(
+        robot_name='Crazyflie2',
+        parameters=[
+            {'robot_description': robot_description_path},
+        ]
+    )    
+    
 
     return LaunchDescription([
         webots,
-        crazyflie_driver,
+        crazyflie_driver1,
+        crazyflie_driver2,
         launch.actions.RegisterEventHandler(
             event_handler=launch.event_handlers.OnProcessExit(
                 target_action=webots,
